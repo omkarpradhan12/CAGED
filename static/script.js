@@ -14,7 +14,7 @@ let lastNoteSetString = "";
  */
 async function initFretboard() {
     const container = document.getElementById('table-container');
-    const API_URL = 'http://127.0.0.1:8000/fretboard';
+    const API_URL = '/fretboard';
 
     try {
         const response = await fetch(API_URL);
@@ -74,7 +74,7 @@ async function sendNotesToRecognizer(noteList) {
     const params = new URLSearchParams();
     noteList.forEach(note => params.append('notes', note));
 
-    const API_URL = `http://127.0.0.1:8000/recognise_chord?${params.toString()}`;
+    const API_URL = `/recognise_chord?${params.toString()}`;
 
     try {
         const response = await fetch(API_URL);
