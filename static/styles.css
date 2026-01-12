@@ -1,0 +1,115 @@
+/* 1. Global fix for the scale drift */
+* {
+    box-sizing: border-box;
+}
+
+#wrapper {
+    position: relative;
+    display: inline-block;
+}
+
+table {
+    border-collapse: collapse;
+    user-select: none;
+    z-index: 1;
+    table-layout: fixed;
+    width: 300px;
+    background-color: #5D4037;
+}
+
+td {
+    position: relative;
+    width: 50px;
+    height: 50px;
+    text-align: center;
+    /* Nicer Text: Modern, clean, and off-white for contrast */
+    color: #F5F5F5;
+    font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+    font-size: 1.1rem;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+    padding: 0;
+
+    /* Silver horizontal lines (Frets) */
+    border-top: 1px solid #C0C0C0;
+    border-bottom: 1px solid #C0C0C0;
+    border-left: 1px solid rgba(51, 51, 51, 0.2);
+    border-right: 1px solid rgba(51, 51, 51, 0.2);
+
+    /* String Gradient */
+    background: #805125;
+    background: linear-gradient(90deg,
+        rgba(128, 81, 37, 1) 47%,
+        rgba(220, 220, 220, 0.459) 50%,
+        rgba(128, 81, 37, 1) 53%
+    );
+
+    transition: all 0.3s ease;
+    overflow: hidden;
+}
+
+/* Updated: Darker, Opaque Circular Background */
+td::after {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 36px;
+    height: 36px;
+    /* Solid Dark Color: This blocks the string line completely */
+    background-color: #3543465e;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 50%;
+    z-index: 1;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Ensure text sits on the very top and looks polished */
+td span, td {
+    position: relative;
+    z-index: 2;
+    /* Subtle shadow makes letters readable even if they drift off the circle */
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.8);
+}
+
+/* 2. The Nut */
+#numberTable tr:first-child td {
+    border-bottom: 4px solid #000000;
+}
+
+/* 3. Enhanced Glow upon highlight */
+td:hover {
+    color: #ffffff;
+    text-shadow: 0 0 8px #ffffff, 0 0 15px #4fc3f7;
+    cursor: pointer;
+}
+
+/* Circle response on hover: Deepens and glows */
+td:hover::after {
+    background-color: #000000;
+    box-shadow: 0 0 12px rgba(79, 195, 247, 0.6);
+    transform: translate(-50%, -50%) scale(1.1);
+}
+
+/* Draggable & SVG Styles */
+.draggable {
+    position: absolute;
+    z-index: 999;
+    cursor: move;
+    touch-action: none;
+    width: 300px;
+    height: 200px;
+}
+
+.active {
+    background: rgba(79, 195, 247, 0.4);
+    border: 1px solid #4fc3f7;
+}
+
+#chord-svg {
+    display: block;
+    width: 100%;
+    height: 100%;
+    vertical-align: top;
+}
