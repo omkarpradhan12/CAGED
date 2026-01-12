@@ -1,4 +1,4 @@
-/* 1. Global fix for the scale drift */
+/* 1. Global Reset & Layout */
 * {
     box-sizing: border-box;
 }
@@ -8,21 +8,37 @@
     display: inline-block;
 }
 
+/* 2. Table Structure */
 table {
     border-collapse: collapse;
     user-select: none;
     z-index: 1;
     table-layout: fixed;
-    width: 300px;
+    /* Increased width slightly to accommodate the new index column */
+    width: 350px;
     background-color: #5D4037;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.5);
 }
 
+/* 3. Header Styles (String Names) */
+th {
+    height: 40px;
+    background-color: #3E2723;
+    color: #F5F5F5;
+    font-family: 'Segoe UI', Roboto, Arial, sans-serif;
+    font-size: 0.9rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    vertical-align: middle;
+}
+
+/* 4. Standard Cell (String) Styles */
 td {
     position: relative;
     width: 50px;
     height: 50px;
     text-align: center;
-    /* Nicer Text: Modern, clean, and off-white for contrast */
     color: #F5F5F5;
     font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
     font-size: 1.1rem;
@@ -48,7 +64,21 @@ td {
     overflow: hidden;
 }
 
-/* Updated: Darker, Opaque Circular Background */
+/* 5. Index Column (Fret Numbers) - Clean Wood Look */
+.fret-index {
+    background: #4E342E !important; /* Solid dark wood, no string gradient */
+    width: 40px;
+    border-right: 3px solid #C0C0C0; /* Represents the edge/binding of the neck */
+    color: #FFD54F; /* Golden yellow for fret numbers */
+    font-size: 0.85rem;
+}
+
+/* Remove circle effects from the index column */
+.fret-index::after, .fret-index:hover::after {
+    display: none !important;
+}
+
+/* 6. Note Circles (The circular background for notes) */
 td::after {
     content: "";
     position: absolute;
@@ -57,47 +87,45 @@ td::after {
     transform: translate(-50%, -50%);
     width: 36px;
     height: 36px;
-    /* Solid Dark Color: This blocks the string line completely */
-    background-color: #3543465e;
+    background-color: rgba(53, 67, 70, 0.37); /* Semi-transparent circle */
     border: 1px solid rgba(255, 255, 255, 0.1);
     border-radius: 50%;
     z-index: 1;
     transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-/* Ensure text sits on the very top and looks polished */
+/* Ensure text stays above circles and has shadow */
 td span, td {
     position: relative;
     z-index: 2;
-    /* Subtle shadow makes letters readable even if they drift off the circle */
     text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.8);
 }
 
-/* 2. The Nut */
-#numberTable tr:first-child td {
-    border-bottom: 4px solid #000000;
-}
-
-/* 3. Enhanced Glow upon highlight */
-td:hover {
+/* 7. Hover Effects */
+td:not(.fret-index):hover {
     color: #ffffff;
     text-shadow: 0 0 8px #ffffff, 0 0 15px #4fc3f7;
     cursor: pointer;
 }
 
-/* Circle response on hover: Deepens and glows */
-td:hover::after {
+td:not(.fret-index):hover::after {
     background-color: #000000;
     box-shadow: 0 0 12px rgba(79, 195, 247, 0.6);
     transform: translate(-50%, -50%) scale(1.1);
 }
 
-/* Draggable & SVG Styles */
+/* 8. The Nut (Bold line at Fret 0) */
+#numberTable tbody tr:first-child td {
+    border-top: 5px solid #000000;
+}
+
+/* 9. Draggable & Overlay Styles */
 .draggable {
     position: absolute;
     z-index: 999;
     cursor: move;
     touch-action: none;
+    /* Note: adjust width/height if your chord SVG needs to be smaller */
     width: 300px;
     height: 200px;
 }

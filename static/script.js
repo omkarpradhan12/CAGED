@@ -20,21 +20,29 @@ async function initFretboard() {
         const response = await fetch(API_URL);
         const data = await response.json();
 
-        // Map column keys (e.g., E, A, D, G, B, E)
         const columns = Object.keys(data);
-        strings = columns;
-
+        strings = columns; // Store for later use in collision detection
         const rowCount = data[columns[0]].length;
         const table = document.createElement('table');
         table.id = "numberTable";
 
         for (let r = 0; r < rowCount; r++) {
             const tr = document.createElement('tr');
+
+            // 1. Create and add the Index cell (Fret Number)
+            const indexTd = document.createElement('td');
+            indexTd.textContent = r; // Use 'r + 1' if you want 1-based indexing
+            indexTd.style.fontWeight = 'bold'; // Optional styling
+            indexTd.classList.add('fret-index');
+            tr.appendChild(indexTd);
+
+            // 2. Add the existing data cells
             columns.forEach(key => {
                 const td = document.createElement('td');
                 td.textContent = data[key][r] || "";
                 tr.appendChild(td);
             });
+
             table.appendChild(tr);
         }
 
@@ -43,7 +51,6 @@ async function initFretboard() {
 
         setupDragging();
 
-        // Initial check for the default chord shape
         const chordObj = document.getElementById('chord-svg');
         if (chordObj.contentDocument) {
             checkCollisions();
@@ -56,7 +63,6 @@ async function initFretboard() {
         document.getElementById('chord-details').textContent = "API Connection Failed";
     }
 }
-
 /**
  * 2. Chord Recognition Integration
  * Communicates with /recognise_chord endpoint

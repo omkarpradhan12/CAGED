@@ -23,9 +23,6 @@ app.mount("/templates", StaticFiles(directory="templates"), name="templates")
 app.mount("/chord_shapes", StaticFiles(directory="chord_shapes"), name="chord_shapes")
 templates = Jinja2Templates(directory="templates")
 
-@app.get("/")
-def read_root():
-    return {"Hello": "World"}
 
 @app.get("/fretboard", response_class=HTMLResponse)
 async def fretboard(tuning_name:str = "Standard"):
@@ -41,9 +38,9 @@ async def recognise_chord(notes: list[str] = Query(None)):
     # Ensure chord is found before accessing __info__
     return chord
 
-@app.get("/home")
+@app.get("/")
 async def home():
-    return templates.TemplateResponse("test.html", {"request": {}})
+    return templates.TemplateResponse("index.html", {"request": {}})
 
 
 if __name__ == "__main__":
