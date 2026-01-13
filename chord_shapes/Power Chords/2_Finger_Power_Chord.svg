@@ -1,0 +1,15 @@
+<svg width="300" height="200" viewBox="0 0 300 200" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg" style="pointer-events: none;">
+  <defs>
+    <pattern id="crosshatch" width="10" height="10" patternUnits="userSpaceOnUse">
+      <path d="M 0 0 L 10 10 M 10 0 L 0 10" stroke="#1409a7" stroke-width="1" opacity="0.5" />
+    </pattern>
+  </defs>
+  <g pointer-events="auto">
+
+
+    <rect x="50" y="100" width="50" height="50" fill="rgba(79, 195, 247, 0.2)" />
+
+    <rect x="0" y="150" width="50" height="50" fill="rgba(79, 195, 247, 0.2)" />
+
+  </g>
+</svg>

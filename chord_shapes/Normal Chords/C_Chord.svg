@@ -6,16 +6,12 @@
   </defs>
 
   <g pointer-events="auto">
-    <rect x="0" y="0" width="300" height="50" fill="rgba(79, 195, 247, 0.2)" />
-    <rect x="0" y="0" width="300" height="50" fill="url(#crosshatch)" />
+
 
     <rect x="200" y="50"  width="50" height="50" fill="rgba(79, 195, 247, 0.2)" />
-    <rect x="200" y="50"  width="50" height="50" fill="url(#crosshatch)" />
 
     <rect x="100" y="100" width="50" height="50" fill="rgba(79, 195, 247, 0.2)" />
-    <rect x="100" y="100" width="50" height="50" fill="url(#crosshatch)" />
 
     <rect x="50"  y="150" width="50" height="50" fill="rgba(79, 195, 247, 0.2)" />
-    <rect x="50"  y="150" width="50" height="50" fill="url(#crosshatch)" />
   </g>
 </svg>
