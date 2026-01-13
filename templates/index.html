@@ -42,7 +42,18 @@
             </div>
         </div>
 
-        <div id="recognition-panel" style="width: 350px; background: rgba(255,255,255,0.05); padding: 30px; border-radius: 15px; border: 1px solid rgba(255,255,255,0.1); backdrop-filter: blur(10px); text-align: center;">
+        <div id="recognition-panel" style="
+    width: 350px;
+    background: rgba(255,255,255,0.05);
+    padding: 30px;
+    border-radius: 15px;
+    border: 1px solid rgba(255,255,255,0.1);
+    backdrop-filter: blur(10px);
+    text-align: center;
+    position: sticky;      /* Makes it sticky */
+    top: 40px;             /* Distance from top of viewport when scrolling */
+    align-self: flex-start; /* Ensures it doesn't stretch to full height */
+">
             <h3 style="color: #888; text-transform: uppercase; letter-spacing: 2px; font-size: 14px; margin-top: 0;">Current Chord</h3>
 
             <div id="chord-name" style="font-size: 84px; font-weight: 900; color: #4fc3f7; font-family: 'Arial Black', sans-serif; line-height: 1; margin: 20px 0; text-shadow: 0 0 20px rgba(79, 195, 247, 0.4);">
