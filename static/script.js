@@ -8,10 +8,13 @@ let strings = [];
 let recognitionTimer = null;
 let lastNoteSetString = "";
 
-async function initFretboard() {
+async function initFretboard(tuning = "Standard") {
     const container = document.getElementById('table-container');
+    // Pass the tuning to the API
+    const API_URL = `/fretboard?tuning_name=${tuning}`;
+
     try {
-        const response = await fetch('/fretboard');
+        const response = await fetch(API_URL);
         const data = await response.json();
 
         const columns = Object.keys(data);
@@ -37,12 +40,33 @@ async function initFretboard() {
 
         container.innerHTML = '';
         container.appendChild(table);
+
+        // Setup dragging only if it hasn't been initialized,
+        // or just ensure setupDragging handles re-initialization
         setupDragging();
+
+        // Recalculate notes for the current position with new tuning
+        checkCollisions();
 
     } catch (error) {
         console.error('Init Error:', error);
     }
 }
+
+// Add this listener at the bottom of your script
+const tuningSelect = document.getElementById('tuning-select');
+if (tuningSelect) {
+    tuningSelect.addEventListener('change', (e) => {
+        console.log("Changing tuning to:", e.target.value);
+        initFretboard(e.target.value);
+    });
+}
+
+// Ensure the initial call in DOMContentLoaded is correct
+document.addEventListener('DOMContentLoaded', () => {
+    initFretboard("Standard");
+    populateChordMenu();
+});
 
 /**
  * UPDATED: Populates menu AND loads the first shape automatically

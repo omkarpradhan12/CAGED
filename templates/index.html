@@ -8,16 +8,30 @@
 </head>
 <body>
     <div class="chord-controls">
-        <div class="control-group">
-            <label for="chord-select" class="control-label">Chord Shape</label>
-            <div class="custom-select-wrapper">
-                <select id="chord-select" class="chord-select">
-                    <option value="" disabled selected>Loading shapes...</option>
-                </select>
-                <span class="select-arrow"></span>
-            </div>
+    <div class="control-group">
+        <label for="tuning-select" class="control-label">Guitar Tuning</label>
+        <div class="custom-select-wrapper">
+            <select id="tuning-select" class="chord-select">
+                <option value="Standard">Standard (E A D G B E)</option>
+                <option value="DADGAD">DADGAD</option>
+                <option value="Drop D">Drop D (D A D G B E)</option>
+                <option value="Open G">Open G (D G D G B D)</option>
+                <option value="Open D">Open D (D A D F# A D)</option>
+            </select>
+            <span class="select-arrow"></span>
         </div>
     </div>
+
+    <div class="control-group">
+        <label for="chord-select" class="control-label">Chord Shape</label>
+        <div class="custom-select-wrapper">
+            <select id="chord-select" class="chord-select">
+                <option value="" disabled selected>Loading shapes...</option>
+            </select>
+            <span class="select-arrow"></span>
+        </div>
+    </div>
+</div>
 
     <div class="main-layout" style="display: flex; justify-content: center; align-items: flex-start; gap: 50px; padding: 40px; background: #121212; min-height: 100vh;">
         <div id="wrapper">
